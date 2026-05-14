@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grade 7 ESL Interactive Lesson: There is vs There are</title>
+  <style>
+    :root{
+      --yellow:#ffd84d;
+      --yellow2:#fff3a6;
+      --gold:#f5b800;
+      --cream:#fffdf2;
+      --white:#ffffff;
+      --ink:#3a2d05;
+      --soft:#fff8cc;
+      --card:rgba(255,255,255,.96);
+      --shadow:0 18px 40px rgba(154,117,0,.18);
+      --radius:24px;
+      --zoom:1;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:"Times New Roman", Times, serif;color:var(--ink);background:linear-gradient(135deg,#fffdf2,#fff4a9,#ffffff);overflow:hidden;}
+    .app{display:grid;grid-template-columns:260px 1fr;height:100vh;width:100vw;}
+    aside{background:linear-gradient(180deg,#f6c400,#fff0a8);color:var(--ink);padding:18px 14px;display:flex;flex-direction:column;gap:12px;box-shadow:8px 0 30px rgba(0,0,0,.12);z-index:5;border-right:5px solid white;}
+    .brand{padding:10px 12px 16px;border-bottom:2px solid rgba(255,255,255,.75)}
+    .brand h1{font-size:22px;margin:0 0 6px;line-height:1.15}.brand p{margin:0;font-size:14px;font-weight:700;opacity:.9}
+    .navbtn{border:0;color:var(--ink);text-align:left;border-radius:18px;padding:13px 14px;font-size:17px;font-weight:900;background:rgba(255,255,255,.55);cursor:pointer;min-height:52px;transition:.2s;box-shadow:inset 0 0 0 2px rgba(255,255,255,.8);font-family:"Times New Roman", Times, serif;}
+    .navbtn:hover,.navbtn.active{background:linear-gradient(135deg,#ffffff,#ffe36b);transform:translateX(4px);box-shadow:0 8px 18px rgba(154,117,0,.18)}
+    .picker,.tools{background:rgba(255,255,255,.60);border-radius:22px;padding:12px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.7)}
+    .picker h3,.tools h3{margin:0 0 10px;font-size:17px}.pickrow,.toolrow{display:flex;gap:8px;flex-wrap:wrap}.pickrow button,.toolrow button{flex:1;border:0;border-radius:16px;padding:10px;font-size:18px;font-weight:900;cursor:pointer;background:var(--white);color:var(--ink);font-family:"Times New Roman", Times, serif;min-width:68px;box-shadow:0 6px 14px rgba(154,117,0,.13)}
+    #pickedNumber{font-size:44px;font-weight:900;text-align:center;line-height:1;background:var(--white);color:var(--ink);border-radius:22px;padding:12px;margin-top:10px;box-shadow:var(--shadow)}
+    main{position:relative;overflow:hidden}.slide{display:none;height:100vh;padding:34px;overflow-y:auto;transform:scale(var(--zoom));transform-origin:top left;width:calc(100% / var(--zoom));}.slide.active{display:block;animation:pop .35s ease}@keyframes pop{from{opacity:0;transform:scale(calc(var(--zoom) * .985))}to{opacity:1;transform:scale(var(--zoom))}}
+    .hero{min-height:calc(100vh - 68px);border-radius:36px;background:radial-gradient(circle at 15% 20%,#ffffff 0,#ffffff 12%,transparent 13%),radial-gradient(circle at 80% 15%,#fff7bf 0,#fff7bf 14%,transparent 15%),linear-gradient(135deg,#ffd84d,#fff8bf,#ffffff);box-shadow:var(--shadow);padding:54px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border:8px solid white;}
+    .hero h2{font-size:76px;margin:0;letter-spacing:-1px}.hero p{font-size:32px;max-width:900px}.badge{display:inline-block;background:#fff;border:3px solid #ffe36b;padding:12px 18px;border-radius:999px;font-weight:900;width:max-content;margin-bottom:16px;font-size:22px}
+    .title{font-size:46px;margin:0 0 10px;color:var(--ink)}.subtitle{font-size:23px;margin:0 0 24px;color:#7a6200}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}.card{background:var(--card);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);border:4px solid white}
+    .centerPanel{max-width:980px;margin:24px auto;min-height:330px;background:var(--card);border-radius:38px;padding:36px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:6px solid white;}
+    .centerPanel.hidden{display:none}.centerPanel h3{font-size:54px;margin:0 0 16px}.tag{display:inline-block;border-radius:999px;padding:7px 13px;font-size:20px;font-weight:900;background:#fff2a8;margin:8px 0}.centerPanel p{font-size:29px;line-height:1.35;margin:10px 0}.example{font-size:26px;text-align:left;width:100%;max-width:850px;background:#fff7bf;border-left:10px solid var(--gold);padding:14px;border-radius:14px;margin-top:10px}
+    .controlRow{display:flex;justify-content:center;gap:16px;margin:18px 0}.bigBtn{border:0;border-radius:999px;padding:16px 26px;font-size:24px;font-weight:900;cursor:pointer;background:#ffd84d;color:var(--ink);box-shadow:var(--shadow);font-family:"Times New Roman", Times, serif}.bigBtn.alt{background:#ffffff}.bigBtn:hover,.choice:hover,.wordChip:hover{transform:translateY(-2px)}
+    .miniGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:18px}.miniCard{background:white;border-radius:24px;padding:14px 10px;text-align:center;font-size:21px;font-weight:900;box-shadow:var(--shadow);cursor:pointer;min-height:92px;display:flex;align-items:center;justify-content:center;border:4px solid #fff4a9}.miniCard:hover{background:#fff7bf;transform:translateY(-3px)}
+    .vocabCard{font-size:21px;flex-direction:column;gap:8px}.vocabImg{width:120px;height:90px;object-fit:contain;margin-bottom:8px}.imageBox{width:290px;height:220px;object-fit:contain;background:white;border-radius:30px;padding:18px;box-shadow:var(--shadow);border:5px solid #fff4a9}
+    .ruleGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}.ruleCard{min-height:260px;text-align:center}.ruleCard h3{font-size:44px;margin:0 0 10px}.ruleCard p,.ruleCard li{font-size:26px;line-height:1.35}.ruleCard ul{text-align:left}.warmCard{background:linear-gradient(135deg,#ffffff,#fff7bf)}
+    .twoColumn{display:grid;grid-template-columns:1fr 1fr;gap:18px}.sortZone{min-height:220px;background:white;border-radius:26px;box-shadow:var(--shadow);padding:18px;border:5px dashed #ffd84d}.sortZone h3{font-size:33px;margin:0 0 12px;text-align:center}.wordBank{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:18px 0}.wordChip{border:0;border-radius:999px;padding:12px 18px;font-size:22px;font-weight:900;cursor:pointer;background:#fff7bf;color:var(--ink);font-family:"Times New Roman", Times, serif;box-shadow:0 8px 18px rgba(154,117,0,.13)}.wordChip.used{opacity:.35;pointer-events:none}.placed{display:inline-block;margin:7px;border-radius:999px;padding:10px 14px;background:#fff2a8;font-size:20px;font-weight:900}
+    .practiceBox{font-size:35px;line-height:1.45;background:white;border-radius:30px;padding:32px;box-shadow:var(--shadow);min-height:190px;text-align:center;border:5px solid #fff4a9}.choices{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:24px}.choice{border:0;border-radius:999px;padding:16px 24px;font-size:25px;font-weight:900;cursor:pointer;background:#fff7bf;color:var(--ink);box-shadow:var(--shadow);font-family:"Times New Roman", Times, serif}.choice.correct{background:#d9f7cf}.choice.wrong{background:#ffd6d6}.feedback{font-size:28px;font-weight:900;text-align:center;margin-top:18px;min-height:38px}.score{font-size:24px;font-weight:900;background:white;border-radius:18px;padding:12px 18px;display:inline-block;box-shadow:var(--shadow)}.answer{display:none;background:#fff7bf;border-left:10px solid var(--gold);border-radius:18px;padding:20px;margin-top:16px;font-size:27px}.show{display:block}.footerNote{font-size:15px;color:#7a6200;margin-top:20px;font-weight:700}
+    @media(max-width:900px){.app{grid-template-columns:1fr}aside{position:fixed;bottom:0;left:0;right:0;height:180px;overflow-x:auto;flex-direction:row}.brand,.picker,.tools{display:none}.navbtn{min-width:190px}.slide{padding-bottom:200px}.hero h2{font-size:48px}.hero p{font-size:22px}.centerPanel h3{font-size:42px}.centerPanel p{font-size:24px}.miniGrid,.ruleGrid,.twoColumn{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <aside>
+    <div class="brand"><h1>There is vs There are</h1><p>Grade 7 ESL Interactive Lesson</p></div>
+    <button class="navbtn active" onclick="go(0)">1. There is vs There are</button>
+    <button class="navbtn" onclick="go(1)">2. Warm-up Sorting Game</button>
+    <button class="navbtn" onclick="go(2)">3. Review of Vocabulary Words</button>
+    <button class="navbtn" onclick="go(3)">4. Lesson Content</button>
+    <button class="navbtn" onclick="go(4)">5. Application</button>
+    <div class="tools"><h3>Screen Options</h3><div class="toolrow"><button onclick="toggleFullScreen()">Full</button><button onclick="zoomIn()">Zoom +</button><button onclick="zoomOut()">Zoom -</button><button onclick="resetZoom()">Reset</button></div></div>
+    <div class="picker"><h3>Number Picker 1–31</h3><div class="pickrow"><button onclick="pickNum()">Pick</button><button onclick="resetNum()">Reset</button></div><div id="pickedNumber">?</div></div>
+  </aside>
+
+  <main>
+    <section class="slide active">
+      <div class="hero" style="background-image:url('cover.png');background-size:cover;background-position:center;">
+        <div class="badge">Grade 7 ESL • Unit 3</div>
+        <h2>There is vs There are</h2>
+        <p>How much? How many? Expressions of Quantity</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2 class="title">Warm-up Sorting Game</h2>
+      
+      <div class="ruleGrid">
+        <div class="card ruleCard warmCard"><h3>Countable Nouns</h3><p>Things we can count one by one.</p><div class="example"><b>Examples:</b> one apple, two books, three pencils, many cookies</div></div>
+        <div class="card ruleCard warmCard"><h3>Uncountable Nouns</h3><p>Things we do not usually count one by one.</p><div class="example"><b>Examples:</b> water, milk, sugar, cheese, salt</div></div>
+      </div>
+      <div class="score">Score: <span id="sortScore">0</span> / <span id="sortTotal">0</span></div>
+      <div class="wordBank" id="wordBank"></div>
+      <div class="twoColumn">
+        <div class="sortZone" onclick="placeWord('countable')"><h3>Countable</h3><div id="countableZone"></div></div>
+        <div class="sortZone" onclick="placeWord('uncountable')"><h3>Uncountable</h3><div id="uncountableZone"></div></div>
+      </div>
+      <div class="feedback" id="sortFeedback"></div>
+      <div class="controlRow"><button class="bigBtn alt" onclick="resetSort()">Reset Sorting Game</button></div>
+    </section>
+
+    <section class="slide">
+      <h2 class="title">Review of Vocabulary Words</h2>
+      
+      <div class="miniGrid" id="vocabButtons"></div>
+      <div class="centerPanel hidden" id="vocabPanel"></div>
+      <div class="controlRow"><button class="bigBtn alt" onclick="prevVocab()">Previous</button><button class="bigBtn" onclick="nextVocab()">Next</button></div>
+    </section>
+
+    <section class="slide">
+      <h2 class="title">Lesson Content: There is vs There are</h2>
+      <div class="ruleGrid">
+        <div class="card ruleCard"><h3>There is</h3><p>Use with singular nouns and uncountable nouns.</p><ul><li>There is an apple.</li><li>There is some milk.</li><li>There is a lot of cheese.</li></ul></div>
+        <div class="card ruleCard"><h3>There are</h3><p>Use with plural countable nouns.</p><ul><li>There are two clocks.</li><li>There are four strawberries.</li><li>There are many ice cubes.</li></ul></div>
+      </div>
+      <div class="controlRow"><button class="bigBtn" onclick="startQuiz()">Practice Quiz</button></div><div id="quizSection" style="display:none"><h2 class="title" style="font-size:36px;margin-top:24px">Practice Quiz</h2><div class="score">Score: <span id="quizScore">0</span> / <span id="quizTotal">0</span></div><div class="practiceBox" id="quizBox"></div>
+      <div class="choices" id="quizChoices"></div>
+      <div class="feedback" id="quizFeedback"></div>
+      <div class="answer" id="answerBox"></div>
+      <div class="controlRow"><button class="bigBtn alt" onclick="showAnswer()">Show Answer</button><button class="bigBtn" onclick="nextQuiz()">Next Question</button><button class="bigBtn alt" onclick="resetQuiz()">Reset Quiz</button></div>
+    </section>
+
+    <section class="slide">
+      <h2 class="title">Application</h2>
+      
+      <div class="grid">
+        <div class="card"><h2 style="font-size:34px">How much or How many?</h2><p style="font-size:25px">Choose the correct question phrase.</p><button class="bigBtn" onclick="startFastRound('question')">Start</button></div>
+        <div class="card"><h2 style="font-size:34px">There is or There are?</h2><p style="font-size:25px">Choose the correct sentence starter.</p><button class="bigBtn" onclick="startFastRound('there')">Start</button></div>
+      </div>
+      <div class="centerPanel hidden" id="fastPanel"></div>
+      <div class="choices" id="fastChoices"></div>
+      <div class="feedback" id="fastFeedback"></div>
+      <p class="footerNote">Teacher tip: Use the number picker on the left to choose students or teams.</p>
+    </section>
+  </main>
+</div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')], navs=[...document.querySelectorAll('.navbtn')];
+function go(i){slides.forEach(s=>s.classList.remove('active'));navs.forEach(n=>n.classList.remove('active'));slides[i].classList.add('active');navs[i].classList.add('active')}
+function pickNum(){document.getElementById('pickedNumber').textContent=Math.floor(Math.random()*31)+1}
+function resetNum(){document.getElementById('pickedNumber').textContent='?'}
+let zoomLevel=1;function setZoom(){document.documentElement.style.setProperty('--zoom',zoomLevel)}function zoomIn(){zoomLevel=Math.min(1.4,zoomLevel+0.1);setZoom()}function zoomOut(){zoomLevel=Math.max(.75,zoomLevel-.1);setZoom()}function resetZoom(){zoomLevel=1;setZoom()}function toggleFullScreen(){if(!document.fullscreenElement){document.documentElement.requestFullscreen()}else{document.exitFullscreen()}}
+
+const vocab=[
+ {w:'a piece of bread',img:'bread.png',ex:'There is a piece of bread on the plate.'},
+ {w:'a slice of pizza',img:'pizza.png',ex:'There is a slice of pizza in the box.'},
+ {w:'a cup of coffee',img:'coffee.png',ex:'There is a cup of coffee on the table.'},
+ {w:'a spoon of sugar',img:'sugar.png',ex:'There is one spoon of sugar in the bowl.'},
+ {w:'a bottle of cola',img:'cola.png',ex:'There is a bottle of cola in the fridge.'},
+ {w:'a cone of ice cream',img:'icecream.png',ex:'There is a cone of ice cream.'},
+ {w:'a glass of water',img:'water.png',ex:'There is a glass of water.'},
+ {w:'a bowl of soup',img:'soup.png',ex:'There is a bowl of soup.'},
+ {w:'a can of soda',img:'soda.png',ex:'There are two cans of soda.'},
+ {w:'a jar of Nutella',img:'nutella.png',ex:'There is a jar of Nutella.'}
+];
+let vocabIndex=0;document.getElementById('vocabButtons').innerHTML=vocab.map((v,i)=>`<div class="miniCard vocabCard" onclick="showVocab(${i})">${v.w}</div>`).join('');
+function showVocab(i){vocabIndex=(i+vocab.length)%vocab.length;const v=vocab[vocabIndex];const panel=document.getElementById('vocabPanel');panel.classList.remove('hidden');panel.innerHTML=`<img class="imageBox" src="${v.img}" alt="${v.w}"><h3>${v.w}</h3><div class="example"><b>Sentence:</b> ${v.ex}</div>`}
+function nextVocab(){showVocab(vocabIndex+1)}function prevVocab(){showVocab(vocabIndex-1)}
+
+const sortWords=[
+ {w:'apples',type:'countable'}, {w:'books',type:'countable'}, {w:'coins',type:'countable'}, {w:'teachers',type:'countable'}, {w:'pencils',type:'countable'}, {w:'cookies',type:'countable'}, {w:'strawberries',type:'countable'},
+ {w:'milk',type:'uncountable'}, {w:'sugar',type:'uncountable'}, {w:'cheese',type:'uncountable'}, {w:'water',type:'uncountable'}, {w:'salt',type:'uncountable'}, {w:'juice',type:'uncountable'}, {w:'yogurt',type:'uncountable'}
+];
+let selectedWord=null,sortScore=0,sortDone=0,currentSort=[];
+function resetSort(){selectedWord=null;sortScore=0;sortDone=0;currentSort=[...sortWords].sort(()=>Math.random()-.5);document.getElementById('sortScore').textContent=0;document.getElementById('sortTotal').textContent=sortWords.length;document.getElementById('sortFeedback').textContent='';document.getElementById('countableZone').innerHTML='';document.getElementById('uncountableZone').innerHTML='';document.getElementById('wordBank').innerHTML=currentSort.map((x,i)=>`<button class="wordChip" id="chip${i}" onclick="selectWord(${i},this)">${x.w}</button>`).join('')}
+function selectWord(i,btn){selectedWord={...currentSort[i],btn};document.querySelectorAll('.wordChip').forEach(b=>b.style.outline='0');btn.style.outline='5px solid #f5b800';document.getElementById('sortFeedback').textContent=`Selected: ${btn.textContent}`}
+function placeWord(zone){if(!selectedWord){document.getElementById('sortFeedback').textContent='Choose a word first.';return}const correct=selectedWord.type===zone;if(correct){sortScore++;document.getElementById('sortFeedback').textContent='Correct!'}else{document.getElementById('sortFeedback').textContent=`Not quite. ${selectedWord.w} is ${selectedWord.type}.`}sortDone++;document.getElementById('sortScore').textContent=sortScore;document.getElementById('sortTotal').textContent=sortDone;document.getElementById(zone+'Zone').innerHTML+=`<span class="placed">${selectedWord.w}</span>`;selectedWord.btn.classList.add('used');selectedWord.btn.style.outline='0';selectedWord=null}
+resetSort();
+
+const quiz=[
+ {q:'Q: How many glasses are there?<br>A: _________ three glasses of water.',a:'There are',c:['There is','There are'],ex:'Use “There are” because glasses is plural.'},
+ {q:'Q: How many apples are there in the basket?<br>A: _________ four apples in the basket.',a:'There are',c:['There is','There are'],ex:'Use “There are” because apples is plural.'},
+ {q:'Q: _________ bottles of milk are there in the fridge?<br>A: There is one bottle of milk in the fridge.',a:'How many',c:['How much','How many'],ex:'Use “How many” because bottles are countable.'},
+ {q:'Q: _________ sugar is there?<br>A: There is a lot of sugar.',a:'How much',c:['How much','How many'],ex:'Use “How much” because sugar is uncountable.'},
+ {q:'Q: How many cans of cola are there?<br>A: _________ two cans of cola.',a:'There are',c:['There is','There are'],ex:'Use “There are” because cans is plural.'},
+ {q:'Q: _________ milk is there?<br>A: There is some milk left in the fridge.',a:'How much',c:['How much','How many'],ex:'Use “How much” because milk is uncountable.'},
+ {q:'Q: _________ pencils are there on the table?<br>A: There are three pencils on the table.',a:'How many',c:['How much','How many'],ex:'Use “How many” because pencils are countable.'},
+ {q:'Q: How much cheese is left?<br>A: _________ a lot of cheese.',a:'There is',c:['There is','There are'],ex:'Use “There is” because cheese is uncountable.'},
+ {q:'Q: _________ coins are there in your pocket?<br>A: There are five coins in my pocket.',a:'How many',c:['How much','How many'],ex:'Use “How many” because coins are countable.'},
+ {q:'Q: How many teachers are there in the class?<br>A: _________ one teacher in the class.',a:'There is',c:['There is','There are'],ex:'Use “There is” because one teacher is singular.'},
+ {q:'Q: _________ books do you have?<br>A: There are some books on the shelf.',a:'How many',c:['How much','How many'],ex:'Use “How many” because books are countable.'},
+ {q:'Q: _________ cookies are there in the box?<br>A: There are four cookies in the box.',a:'How many',c:['How much','How many'],ex:'Use “How many” because cookies are countable.'},
+ {q:'Q: _________ yogurt are there?<br>A: There are two cups of yogurt.',a:'How much',c:['How much','How many'],ex:'Use “How much” because yogurt is uncountable.'}
+];
+let quizIndex=0,quizScore=0,quizAnswered=false;
+function renderQuiz(){quizAnswered=false;const item=quiz[quizIndex];document.getElementById('quizBox').innerHTML=item.q;document.getElementById('answerBox').classList.remove('show');document.getElementById('answerBox').innerHTML=`<b>Answer:</b> ${item.a}<br>${item.ex}`;document.getElementById('quizFeedback').textContent='';document.getElementById('quizChoices').innerHTML=item.c.map(x=>`<button class="choice" onclick="checkQuiz(this,'${x}')">${x}</button>`).join('');document.getElementById('quizScore').textContent=quizScore;document.getElementById('quizTotal').textContent=quizIndex}
+function checkQuiz(btn,choice){if(quizAnswered)return;quizAnswered=true;const item=quiz[quizIndex];if(choice===item.a){quizScore++;btn.classList.add('correct');document.getElementById('quizFeedback').textContent='Correct!'}else{btn.classList.add('wrong');document.getElementById('quizFeedback').textContent=`Answer: ${item.a}`}document.getElementById('quizScore').textContent=quizScore;document.getElementById('quizTotal').textContent=quizIndex+1}
+function nextQuiz(){quizIndex=(quizIndex+1)%quiz.length;renderQuiz()}function resetQuiz(){quizIndex=0;quizScore=0;renderQuiz()}function showAnswer(){document.getElementById('answerBox').classList.add('show')}function startQuiz(){document.getElementById('quizSection').style.display='block';renderQuiz()}
+
+const fastQuestion=[
+ {q:'____ water is there?',a:'How much',c:['How much','How many']},{q:'____ cookies are there?',a:'How many',c:['How much','How many']},{q:'____ cheese is left?',a:'How much',c:['How much','How many']},{q:'____ books do you have?',a:'How many',c:['How much','How many']}
+];
+const fastThere=[
+ {q:'____ some milk in the fridge.',a:'There is',c:['There is','There are']},{q:'____ four strawberries.',a:'There are',c:['There is','There are']},{q:'____ a clock on the wall.',a:'There is',c:['There is','There are']},{q:'____ many ice cubes.',a:'There are',c:['There is','There are']}
+];
+let fastList=fastQuestion,fastIndex=0;
+function startFastRound(type){fastList=type==='question'?fastQuestion:fastThere;fastIndex=0;renderFast()}
+function renderFast(){const item=fastList[fastIndex];const panel=document.getElementById('fastPanel');panel.classList.remove('hidden');panel.innerHTML=`<h3>${item.q}</h3>`;document.getElementById('fastFeedback').textContent='';document.getElementById('fastChoices').innerHTML=item.c.map(x=>`<button class="choice" onclick="checkFast(this,'${x}')">${x}</button>`).join('')}
+function checkFast(btn,choice){const item=fastList[fastIndex];if(choice===item.a){btn.classList.add('correct');document.getElementById('fastFeedback').textContent='Correct!'}else{btn.classList.add('wrong');document.getElementById('fastFeedback').textContent=`Answer: ${item.a}`}setTimeout(()=>{fastIndex=(fastIndex+1)%fastList.length;renderFast()},900)}
+</script>
+</body>
+</html>
